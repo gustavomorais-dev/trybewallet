@@ -1,5 +1,3 @@
-import { LOGIN } from '../actions/user.action';
-
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
@@ -7,15 +5,9 @@ const INITIAL_STATE = {
   idToEdit: 0,
 };
 
-const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
-  switch (type) {
-  case 'XD':
-    return {
-      email: payload.email,
-    };
-  default:
-    return state;
-  }
+const walletReducer = (state = INITIAL_STATE, action) => {
+  console.log(action);
+  return state;
 };
 
 export default walletReducer;
