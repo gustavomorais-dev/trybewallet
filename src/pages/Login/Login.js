@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Input from '../../components/Input/Input';
 import { isValidEmail, isValidPassword } from '../../validations/userValidations';
 import { login } from '../../redux/actions/user.action';
+import Button from '../../components/Button/Button';
 
 class Login extends React.Component {
   constructor() {
@@ -69,12 +70,11 @@ class Login extends React.Component {
               : null
           }
         />
-        <button
+        <Button
           type="submit"
+          label="Entrar"
           disabled={ !(isValidEmail(email) && isValidPassword(password)) }
-        >
-          Entrar
-        </button>
+        />
       </form>
     );
   }
