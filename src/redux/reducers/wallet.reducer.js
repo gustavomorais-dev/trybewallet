@@ -3,6 +3,7 @@ import {
   REQUEST_STARTED,
   REQUEST_SUCCESSFUL,
 } from '../actions/fetch.action';
+import { ADD_EXPENSE } from '../actions/wallet.action';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -26,7 +27,7 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
     return {
       ...state,
       isFetching: false,
-      currencies: payload,
+      currencies: payload ?? state.currencies,
       errorMessage: '',
     };
 
@@ -36,6 +37,13 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
       isFetching: false,
       errorMessage: payload,
     };
+
+  case ADD_EXPENSE:
+    return {
+      ...state,
+      expenses: [...state.expenses, payload],
+    };
+
   default:
     return state;
   }

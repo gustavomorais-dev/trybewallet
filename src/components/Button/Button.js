@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 
 class Button extends Component {
   render() {
-    const { label, type, disabled } = this.props;
+    const { testid, label, type, disabled } = this.props;
     return (
       <button
+        data-test-id={ testid }
         type={ type }
         disabled={ disabled }
       >
@@ -17,9 +18,11 @@ class Button extends Component {
 
 Button.defaultProps = {
   disabled: false,
+  testid: '',
 };
 
 Button.propTypes = {
+  testid: PropTypes.string,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
