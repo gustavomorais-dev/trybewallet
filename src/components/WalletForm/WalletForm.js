@@ -5,6 +5,7 @@ import Input from '../Input/Input';
 import Select from '../Select/Select';
 import Button from '../Button/Button';
 import { getCurrencies, newExpense } from '../../redux/actions/wallet.action';
+import './WalletForm.css';
 
 const currencyDefaultValue = 'USD';
 const valueDefaultValue = '';

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Input.css';
 
 class Input extends Component {
   render() {
     const { testid, type, label, name, value, placeholder, onChange, error } = this.props;
 
     return (
-      <div>
+      <div className="form-field">
         {label && <label htmlFor={ name }>{label}</label>}
         <input
           data-testid={ testid }
