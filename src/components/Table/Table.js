@@ -29,11 +29,17 @@ class Table extends Component {
                 <td>{ row.description }</td>
                 <td>{ row.tag }</td>
                 <td>{ row.method }</td>
-                <td>{ row.value }</td>
+                <td>{ `${row.value}.00` }</td>
+                <td>{ row.exchangeRates[row.currency].name }</td>
                 <td>{ parseFloat(row.exchangeRates[row.currency].ask).toFixed(2) }</td>
-                <td>{ row.currency }</td>
-                <td>dfsd</td>
-                <td>{ row.Real }</td>
+                <td>
+                  {
+                    (
+                      parseFloat(row.exchangeRates[row.currency].ask * (+row.value))
+                    ).toFixed(2)
+                  }
+                </td>
+                <td>Real</td>
                 <td>
                   <button onClick={ () => handleEdit(row.id) }>Editar</button>
                   <button onClick={ () => handleDelete(row.id) }>Excluir</button>
