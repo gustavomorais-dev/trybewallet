@@ -71,6 +71,7 @@ class Login extends React.Component {
           }
         />
         <Button
+          testid="login-button"
           type="submit"
           label="Entrar"
           disabled={ !(isValidEmail(email) && isValidPassword(password)) }
