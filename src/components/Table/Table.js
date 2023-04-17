@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import './Table.css';
 import Button from '../Button/Button';
 import { deleteExpense, editTrigger } from '../../redux/actions/wallet.action';
 
