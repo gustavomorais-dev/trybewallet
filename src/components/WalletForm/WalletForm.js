@@ -4,7 +4,12 @@ import PropTypes from 'prop-types';
 import Input from '../Input/Input';
 import Select from '../Select/Select';
 import Button from '../Button/Button';
-import { getCurrencies, newExpense } from '../../redux/actions/wallet.action';
+import {
+  editExpense,
+  editTrigger,
+  getCurrencies,
+  newExpense,
+} from '../../redux/actions/wallet.action';
 import './WalletForm.css';
 
 const currencyDefaultValue = 'USD';
@@ -23,15 +28,32 @@ class WalletForm extends Component {
       description: descriptionDefaultValue,
       method: methodDefaultValue,
       tag: tagDefaultValue,
+      editingId: undefined,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleAddExpense = this.handleAddExpense.bind(this);
+    this.handleEditExpense = this.handleEditExpense.bind(this);
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(getCurrencies());
+  }
+
+  componentDidUpdate(prevProps) {
+    const { editingId, expenses } = this.props;
+    if (editingId !== prevProps.editingId && typeof editingId === 'number') {
+      const expense = expenses.find((exp) => exp.id === editingId);
+      this.setState({
+        currency: expense.currency,
+        value: expense.value,
+        description: expense.description,
+        method: expense.method,
+        tag: expense.tag,
+        editingId,
+      });
+    }
   }
 
   handleChange({ target }) {
@@ -43,7 +65,22 @@ class WalletForm extends Component {
   handleAddExpense(event) {
     event.preventDefault();
     const { dispatch, expenses } = this.props;
-    dispatch(newExpense({ ...this.state, id: (expenses.length) }));
+    const id = expenses.length > 0 ? expenses[expenses.length - 1].id + 1 : 0;
+    dispatch(newExpense({ ...this.state, id }));
+    this.setState({
+      currency: currencyDefaultValue,
+      value: valueDefaultValue,
+      description: descriptionDefaultValue,
+      method: methodDefaultValue,
+      tag: tagDefaultValue,
+    });
+  }
+
+  handleEditExpense(event) {
+    event.preventDefault();
+    const { dispatch, editingId } = this.props;
+    dispatch(editExpense({ ...this.state, editingId }));
+    dispatch(editTrigger({ }));
     this.setState({
       currency: currencyDefaultValue,
       value: valueDefaultValue,
@@ -55,14 +92,18 @@ class WalletForm extends Component {
 
   render() {
     const { currencyOptions } = this.props;
-    const { currency, value, description, method, tag } = this.state;
+    const { currency, value, description, method, tag, editingId } = this.state;
 
     const paymentMethodsOptions = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
 
     const tagOptions = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
 
     return (
-      <form onSubmit={ this.handleAddExpense }>
+      <form
+        onSubmit={
+          typeof editingId === 'number' ? this.handleEditExpense : this.handleAddExpense
+        }
+      >
         <Input
           testid="value-input"
           type="number"
@@ -107,7 +148,9 @@ class WalletForm extends Component {
         />
         <Button
           type="submit"
-          label="Adicionar despesa"
+          label={
+            typeof editingId === 'number' ? 'Editar despesa' : 'Adicionar despesa'
+          }
           testid=""
         />
       </form>
@@ -118,6 +161,7 @@ class WalletForm extends Component {
 const mapStateToProps = (state) => ({
   currencyOptions: state.wallet.currencies,
   expenses: state.wallet.expenses,
+  editingId: state.wallet.editingId,
 });
 
 WalletForm.propTypes = {
@@ -128,6 +172,7 @@ WalletForm.propTypes = {
   expenses: PropTypes.arrayOf(
     {},
   ).isRequired,
+  editingId: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(WalletForm);

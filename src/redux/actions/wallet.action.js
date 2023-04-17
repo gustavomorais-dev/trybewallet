@@ -6,6 +6,9 @@ import {
 } from './fetch.action';
 
 export const ADD_EXPENSE = 'ADD_EXPENSE';
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
+export const EDIT_TRIGGER = 'EDIT_TRIGGER';
 
 export const addExpense = (payload) => ({
   type: ADD_EXPENSE,
@@ -55,3 +58,36 @@ export function getCurrencies() {
       .catch((error) => dispatch(requestFailed(error)));
   };
 }
+
+export const deleteExpense = (payload) => ({
+  type: DELETE_EXPENSE,
+  payload,
+});
+
+export const editExpense = (payload) => ({
+  type: EDIT_EXPENSE,
+  payload,
+});
+
+export function newExpensesState(expenses, payload) {
+  const newExpenseState = expenses.map((expense) => {
+    if (expense.id === payload.editingId) {
+      return {
+        id: payload.editingId,
+        value: payload.value,
+        description: payload.description,
+        currency: payload.currency,
+        method: payload.method,
+        tag: payload.tag,
+        exchangeRates: expense.exchangeRates,
+      };
+    }
+    return expense;
+  });
+  return newExpenseState;
+}
+
+export const editTrigger = (payload) => ({
+  type: EDIT_TRIGGER,
+  payload,
+});

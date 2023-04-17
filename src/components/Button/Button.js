@@ -4,12 +4,13 @@ import './Button.css';
 
 class Button extends Component {
   render() {
-    const { testid, label, type, disabled } = this.props;
+    const { testid, label, type, disabled, onClick } = this.props;
     return (
       <button
         data-testid={ testid }
         type={ type }
         disabled={ disabled }
+        onClick={ onClick }
       >
         { label }
       </button>
@@ -20,6 +21,7 @@ class Button extends Component {
 Button.defaultProps = {
   disabled: false,
   testid: '',
+  onClick: () => {},
 };
 
 Button.propTypes = {
@@ -27,6 +29,7 @@ Button.propTypes = {
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 export default Button;

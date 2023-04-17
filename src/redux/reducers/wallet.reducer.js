@@ -3,7 +3,13 @@ import {
   REQUEST_STARTED,
   REQUEST_SUCCESSFUL,
 } from '../actions/fetch.action';
-import { ADD_EXPENSE } from '../actions/wallet.action';
+import {
+  ADD_EXPENSE,
+  DELETE_EXPENSE,
+  EDIT_EXPENSE,
+  EDIT_TRIGGER,
+  newExpensesState,
+} from '../actions/wallet.action';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -12,6 +18,7 @@ const INITIAL_STATE = {
   idToEdit: 0,
   isFetching: false,
   errorMessage: '',
+  editingId: 'not_editing',
 };
 
 const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
@@ -22,7 +29,6 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
       isFetching: true,
       errorMessage: '',
     };
-
   case REQUEST_SUCCESSFUL:
     return {
       ...state,
@@ -30,20 +36,32 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
       currencies: payload ?? state.currencies,
       errorMessage: '',
     };
-
   case REQUEST_FAILED:
     return {
       ...state,
       isFetching: false,
       errorMessage: payload,
     };
-
   case ADD_EXPENSE:
     return {
       ...state,
       expenses: [...state.expenses, payload],
     };
-
+  case DELETE_EXPENSE:
+    return {
+      ...state,
+      expenses: state.expenses.filter((expense) => expense.id !== payload.id),
+    };
+  case EDIT_EXPENSE:
+    return {
+      ...state,
+      expenses: newExpensesState([...state.expenses], payload),
+    };
+  case EDIT_TRIGGER:
+    return {
+      ...state,
+      editingId: payload.id !== undefined ? payload.id : 'not_editing',
+    };
   default:
     return state;
   }

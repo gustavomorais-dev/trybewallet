@@ -2,8 +2,30 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './Table.css';
+import Button from '../Button/Button';
+import { deleteExpense, editTrigger } from '../../redux/actions/wallet.action';
 
 class Table extends Component {
+  constructor() {
+    super();
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+  }
+
+  handleEdit(id) {
+    const { dispatch } = this.props;
+    dispatch(editTrigger({
+      id,
+    }));
+  }
+
+  handleDelete(id) {
+    const { dispatch } = this.props;
+    dispatch(deleteExpense({
+      id,
+    }));
+  }
+
   render() {
     const { expenses } = this.props;
 
@@ -41,8 +63,16 @@ class Table extends Component {
                 </td>
                 <td>Real</td>
                 <td>
-                  <button onClick={ () => handleEdit(row.id) }>Editar</button>
-                  <button onClick={ () => handleDelete(row.id) }>Excluir</button>
+                  <Button
+                    label="Editar"
+                    testid="edit-btn"
+                    onClick={ () => this.handleEdit(row.id) }
+                  />
+                  <Button
+                    label="Excluir"
+                    testid="delete-btn"
+                    onClick={ () => this.handleDelete(row.id) }
+                  />
                 </td>
               </tr>
             ))
@@ -58,6 +88,7 @@ const mapStateToProps = (state) => ({
 });
 
 Table.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   expenses: PropTypes.arrayOf(
     {},
   ).isRequired,
