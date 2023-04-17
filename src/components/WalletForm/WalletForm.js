@@ -10,7 +10,7 @@ import {
   getCurrencies,
   newExpense,
 } from '../../redux/actions/wallet.action';
-import './WalletForm.css';
+// import './WalletForm.css';
 
 const currencyDefaultValue = 'USD';
 const valueDefaultValue = '';
