@@ -1,0 +1,40 @@
+/* Estilo da tabela */
+.table-container {
+    border-spacing: 1px; /* Espaço vazio entre as células */
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    background-color: #111;
+    opacity: 0.85;
+  }
+  
+  /* Estilo das células de cabeçalho (títulos) */
+  th {
+    background-color: #000;
+    color: #d5b15d;
+    padding: 10px;
+    margin: 1px;
+    text-align: center; /* Centralizar o texto */
+    text-overflow: ellipsis;
+    max-width: 100px;
+    white-space: break-spaces;
+  }
+  
+  /* Estilo das células de dados */
+  td {
+    color: #d5b15d;
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
+    white-space: break-spaces;
+  }
+  
+  /* Estilização das células de dados alternadas (opcional) */
+  tr:nth-child(even) {
+    background-color: #111;
+  }
+  

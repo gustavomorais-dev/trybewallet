@@ -1,0 +1,27 @@
+/* Input */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+    color: #d5b15d;
+}
+
+.input-container .error {
+    color: #e24110;
+}
+
+input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  

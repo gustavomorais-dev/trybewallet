@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Select.css';
 
 class Select extends Component {
   render() {
     const { testid, label, value, onChange, options, name } = this.props;
     return (
-      <div>
-        <label htmlFor={ testid }>{label}</label>
+      <div className="select-container">
+        <label htmlFor={ testid } className="select-label">{label}</label>
         <select
           data-testid={ testid }
           value={ value }

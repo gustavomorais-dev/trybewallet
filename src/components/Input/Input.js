@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Input.css';
 
 class Input extends Component {
   render() {
     const { testid, type, label, name, value, placeholder, onChange, error } = this.props;
 
     return (
-      <div className="form-field">
+      <div className="input-container">
         {label && <label htmlFor={ name }>{label}</label>}
         <input
           data-testid={ testid }
@@ -16,7 +17,7 @@ class Input extends Component {
           placeholder={ placeholder }
           onChange={ onChange }
         />
-        {error && <div>{error}</div>}
+        {error && <div className="error">{error}</div>}
       </div>
     );
   }

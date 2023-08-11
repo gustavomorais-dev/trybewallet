@@ -1,0 +1,36 @@
+/* Select */
+.select-container {
+    margin-bottom: 20px;
+  }
+  
+  .select-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #d5b15d;
+  }
+  
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s ease-in-out;
+    appearance: none;
+    cursor: pointer;
+    font-family: 'Arvo', serif;
+    font-size: 2vh;
+  }
+  
+  select:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  select option {
+    color: #333;
+    background-color: #fff;
+  }
+  
+  

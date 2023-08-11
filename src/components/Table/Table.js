@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from '../Button/Button';
 import { deleteExpense, editTrigger } from '../../redux/actions/wallet.action';
+import './Table.css';
 
 class Table extends Component {
   constructor() {

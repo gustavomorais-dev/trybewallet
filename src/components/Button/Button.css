@@ -1,0 +1,25 @@
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #daac41;
+    color: #0c0b0b;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    outline: none;
+    margin-top: 10px;
+    min-width: 8vw;
+    font-family: 'Arvo', serif;
+    font-size: 2vh;
+  }
+  
+  button:hover {
+    background-color: #7c6226;
+  }
+  
+  button:disabled {
+    background-color: #4d3c17;
+    cursor: not-allowed;
+  }

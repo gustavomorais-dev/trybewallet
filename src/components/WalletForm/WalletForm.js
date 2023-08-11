@@ -10,6 +10,7 @@ import {
   getCurrencies,
   newExpense,
 } from '../../redux/actions/wallet.action';
+import './WalletForm.css';
 
 const currencyDefaultValue = 'USD';
 const valueDefaultValue = '';
@@ -86,6 +87,7 @@ class WalletForm extends Component {
       description: descriptionDefaultValue,
       method: methodDefaultValue,
       tag: tagDefaultValue,
+      editingId: undefined,
     });
   }
 
@@ -98,61 +100,63 @@ class WalletForm extends Component {
     const tagOptions = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
 
     return (
-      <form
-        onSubmit={
-          typeof editingId === 'number' ? this.handleEditExpense : this.handleAddExpense
-        }
-      >
-        <Input
-          testid="value-input"
-          type="number"
-          label="Valor"
-          name="value"
-          value={ value }
-          placeholder="100"
-          onChange={ this.handleChange }
-        />
-        <Select
-          testid="currency-input"
-          label="Moeda"
-          name="currency"
-          value={ currency }
-          onChange={ this.handleChange }
-          options={ currencyOptions }
-        />
-        <Select
-          testid="method-input"
-          label="Método de pagamento"
-          name="method"
-          value={ method }
-          onChange={ this.handleChange }
-          options={ paymentMethodsOptions }
-        />
-        <Select
-          testid="tag-input"
-          label="Categoria"
-          name="tag"
-          value={ tag }
-          onChange={ this.handleChange }
-          options={ tagOptions }
-        />
-        <Input
-          testid="description-input"
-          type="text"
-          label="Descrição"
-          name="description"
-          value={ description }
-          placeholder=""
-          onChange={ this.handleChange }
-        />
-        <Button
-          type="submit"
-          label={
-            typeof editingId === 'number' ? 'Editar despesa' : 'Adicionar despesa'
+      <div className="wallet-form-container">
+        <form
+          onSubmit={
+            typeof editingId === 'number' ? this.handleEditExpense : this.handleAddExpense
           }
-          testid=""
-        />
-      </form>
+        >
+          <Input
+            testid="value-input"
+            type="number"
+            label="Valor"
+            name="value"
+            value={ value }
+            placeholder="100"
+            onChange={ this.handleChange }
+          />
+          <Select
+            testid="currency-input"
+            label="Moeda"
+            name="currency"
+            value={ currency }
+            onChange={ this.handleChange }
+            options={ currencyOptions }
+          />
+          <Select
+            testid="method-input"
+            label="Método de pagamento"
+            name="method"
+            value={ method }
+            onChange={ this.handleChange }
+            options={ paymentMethodsOptions }
+          />
+          <Select
+            testid="tag-input"
+            label="Categoria"
+            name="tag"
+            value={ tag }
+            onChange={ this.handleChange }
+            options={ tagOptions }
+          />
+          <Input
+            testid="description-input"
+            type="text"
+            label="Descrição"
+            name="description"
+            value={ description }
+            placeholder=""
+            onChange={ this.handleChange }
+          />
+          <Button
+            type="submit"
+            label={
+              typeof editingId === 'number' ? 'Editar despesa' : 'Adicionar despesa'
+            }
+            testid=""
+          />
+        </form>
+      </div>
     );
   }
 }

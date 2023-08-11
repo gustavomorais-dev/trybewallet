@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import './Header.css';
 
 class Header extends React.Component {
   constructor() {
@@ -27,15 +28,17 @@ class Header extends React.Component {
         >
           { emailState }
         </span>
-        <span
-          data-testid="total-field"
-        >
-          { total.toFixed(2) }
-        </span>
-        <span
-          data-testid="header-currency-field"
-        >
-          BRL
+        <span className="total">
+          <span
+            data-testid="total-field"
+          >
+            { total.toFixed(2) }
+          </span>
+          <span
+            data-testid="header-currency-field"
+          >
+            BRL
+          </span>
         </span>
       </header>
     );

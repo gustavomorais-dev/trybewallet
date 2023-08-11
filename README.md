@@ -1,10 +1,23 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# TrybeWallet
+
+Uma carteira de controle de gastos com conversor de moedas. O usuário pode registrar seus gastos, com os dados de entrada em diversas moedas. A aplicação armazena os gastos e os converte para BRL. As principais ações possíveis são:
+
+- Adição, remoção e edição de despesas com facilidade.
+- Visualização de uma tabela completa contendo todas as despesas registradas.
+- Conversão automática de todas as despesas para a moeda escolhida pelo usuário.
+
+## Começando
+
+Para testar a aplicação localmente, clone o repositório e siga os seguintes passos:
+
+1. **Instalar Dependências:**
+
+```
+$ npm install
+```
+
+2. **Iniciar o aplicativo:**
+
+```
+$ npm start
+```
