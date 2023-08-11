@@ -37,7 +37,7 @@ class Login extends React.Component {
       email,
     }));
 
-    history.push('/carteira');
+    history.push('/trybewallet/carteira');
   }
 
   render() {
